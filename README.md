@@ -30,3 +30,9 @@ samples, guidance on mobile development, and a full API reference.
 
 
 ![Screenshot_20201118-180616](https://user-images.githubusercontent.com/74393555/99534428-35a36c80-29c9-11eb-839a-14a633d3159c.png)
+
+
+And this is the main screen of the quiz start with the Timer and quit button.
+
+
+![Screenshot_20201118-201135](https://user-images.githubusercontent.com/74393555/99551352-8de46980-29dd-11eb-861d-23f69062091a.png)
