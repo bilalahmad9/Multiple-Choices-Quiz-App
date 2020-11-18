@@ -56,6 +56,35 @@ class quiz1 extends StatefulWidget {
 }
 
 class _quiz1State extends State<quiz1> {
+
+  Timer timer;
+  int start = 15;
+
+  @override
+  void initState() {
+    super.initState();
+    StartTime();
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
+  }
+
+  void StartTime(){
+    timer = Timer.periodic(Duration(seconds: 1), (Timer timer) {
+      setState(() {
+        if(start < 1)
+          {
+            UpdateQuestion();
+          }else{
+          start--;
+        }
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -94,6 +123,11 @@ class _quiz1State extends State<quiz1> {
               ),
 
               Padding(padding: EdgeInsets.all(10.0)),
+
+              Text('$start', style: TextStyle(
+                fontSize: 30.0,
+                fontWeight: FontWeight.bold,
+              ),),
 
               Image.asset(
                 "images/${quiz.images[questionNumber]}.jpg",
@@ -277,8 +311,10 @@ class _quiz1State extends State<quiz1> {
     setState(() {
       if(questionNumber == quiz.questions.length-1){
         Navigator.push(context, MaterialPageRoute(builder: (context)=>Summary(score: finalscore)));
+        timer.cancel();
       }else{
         questionNumber++;
+        start = 15;
       }
     });
   }
