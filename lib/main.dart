@@ -1,56 +1,50 @@
 import 'package:flutter/material.dart';
-import 'Quiz1.dart';
+import 'dart:async';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'start.dart';
 
-void main() {
-  runApp(
-    MaterialApp(
-      home: MyQuizApp(),
-    ),
-  );
-}
+void main() => runApp(SplashScreen());
 
-class MyQuizApp extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   @override
-  _MyQuizAppState createState() => _MyQuizAppState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: MySplashScreen(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
 }
 
-class _MyQuizAppState extends State<MyQuizApp> {
+class MySplashScreen extends StatefulWidget {
+  @override
+  _MySplashScreenState createState() => _MySplashScreenState();
+}
+
+class _MySplashScreenState extends State<MySplashScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+
+    Timer(Duration(seconds: 5), ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => MyQuizApp())));
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Multiple Choice Quiz"),
-        backgroundColor: Colors.green,
-      ),
-      body: Container(
-        margin: const EdgeInsets.all(15.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-          MaterialButton(
-              height: 50.0,
-              onPressed: (){
-                StartQuiz();
-              },
-              color: Colors.black,
-              child: Text(
-                "Click to Start Quiz",
-                style: TextStyle(fontSize: 20.0, color: Colors.amber),
-              ),
-          ),
-          ],
-        ),
+      backgroundColor: Colors.black,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Image.asset('images/qtime.jpg', height: 150.0,),
+
+          SizedBox( height: 30.0),
+
+          SpinKitRipple(color: Colors.blue),
+        ],
       ),
     );
   }
-
-  void StartQuiz(){
-    setState(() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => quiz1()));
-    });
-  }
-
-
-
 }
