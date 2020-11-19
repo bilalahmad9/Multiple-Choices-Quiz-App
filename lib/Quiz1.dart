@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class MyQuiz{
   var images = [
@@ -96,7 +97,7 @@ class _quiz1State extends State<quiz1> {
           alignment: Alignment.topCenter,
           child: Column(
             children: <Widget>[
-              Padding(padding: EdgeInsets.all(20.0)),
+              Padding(padding: EdgeInsets.all(10.0)),
 
               Container(
                 alignment: Alignment.centerRight,
@@ -133,7 +134,7 @@ class _quiz1State extends State<quiz1> {
                 "images/${quiz.images[questionNumber]}.jpg",
               ),
 
-              Padding(padding: EdgeInsets.all(10.0)),
+              Padding(padding: EdgeInsets.all(5.0)),
 
               Text(quiz.questions[questionNumber],
               style: TextStyle(
@@ -142,7 +143,7 @@ class _quiz1State extends State<quiz1> {
               ),
               ),
 
-              Padding(padding: EdgeInsets.all(20.0)),
+              Padding(padding: EdgeInsets.all(5.0)),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -273,7 +274,7 @@ class _quiz1State extends State<quiz1> {
                 ],
               ),
 
-              Padding(padding: EdgeInsets.all(30.0)),
+              Padding(padding: EdgeInsets.all(5.0)),
 
               Container(
                 alignment: Alignment.bottomCenter,
@@ -284,6 +285,38 @@ class _quiz1State extends State<quiz1> {
                   onPressed: resetQuiz,
                   child: Text(
                     "Quit",
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                alignment: Alignment.bottomCenter,
+                child: MaterialButton(
+                  minWidth: 240.0,
+                  color: Colors.red,
+                  height: 40.0,
+                  onPressed: reset,
+                  child: Text(
+                    "Reset",
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                alignment: Alignment.bottomCenter,
+                child: MaterialButton(
+                  minWidth: 240.0,
+                  color: Colors.red,
+                  height: 40.0,
+                  onPressed: back,
+                  child: Text(
+                    "Go Back",
                     style: TextStyle(
                       fontSize: 20.0,
                       color: Colors.white,
@@ -304,6 +337,28 @@ class _quiz1State extends State<quiz1> {
       Navigator.pop(context);
       finalscore = 0;
       questionNumber = 0;
+    });
+  }
+
+  void reset()
+  {
+    setState(() {
+      finalscore = 0;
+      questionNumber = 0;
+      start = 15;
+    });
+  }
+
+  void back()
+  {
+    setState(() {
+      finalscore = finalscore;
+      questionNumber = questionNumber - 1;
+      if(questionNumber == -1)
+        {
+          questionNumber = 0;
+        }
+      start = 15;
     });
   }
 
@@ -334,7 +389,6 @@ class Summary extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-
                 Text("Final Score: $score / 10",
                 style: TextStyle(
                   fontSize: 25.0,
@@ -349,14 +403,14 @@ class Summary extends StatelessWidget {
                 Padding(padding: EdgeInsets.all(10.0)),
 
                 MaterialButton(
-                   color: Colors.red,
+                   color: Colors.green,
                     onPressed: (){
-                     Navigator.pop(context);
                      questionNumber = 0;
                      finalscore = 0;
-                    },
+
+                     },
                    child: Text(
-                    "Reset Quiz",
+                    "Check All Correct Answers",
                     style: TextStyle(
                       fontSize: 20.0,
                       color: Colors.white,
