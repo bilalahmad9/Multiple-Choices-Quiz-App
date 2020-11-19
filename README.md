@@ -36,3 +36,10 @@ And this is the main screen of the quiz start with the Timer and quit button.
 
 
 ![Screenshot_20201118-201135](https://user-images.githubusercontent.com/74393555/99551352-8de46980-29dd-11eb-861d-23f69062091a.png)
+
+
+
+**### _Now Back and Reset option is also in this App with full work._**
+
+
+![Screenshot_20201119-091116](https://user-images.githubusercontent.com/74393555/99620488-6de99000-2a47-11eb-9770-12a7f49c2725.png)
